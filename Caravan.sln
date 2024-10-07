@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caravan.Logic", "Caravan.Logic\Caravan.Logic.csproj", "{8E09431B-4AEF-4F9D-AB69-B61ADA52F97A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caravan.UnitTest", "Caravan.UnitTest\Caravan.UnitTest.csproj", "{C04B85D6-8770-4971-9A24-A9B3CD88EDD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BFA9BA5-A982-4343-B0DB-AFF1985633AB}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E09431B-4AEF-4F9D-AB69-B61ADA52F97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E09431B-4AEF-4F9D-AB69-B61ADA52F97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E09431B-4AEF-4F9D-AB69-B61ADA52F97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E09431B-4AEF-4F9D-AB69-B61ADA52F97A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C04B85D6-8770-4971-9A24-A9B3CD88EDD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C04B85D6-8770-4971-9A24-A9B3CD88EDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C04B85D6-8770-4971-9A24-A9B3CD88EDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C04B85D6-8770-4971-9A24-A9B3CD88EDD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36D08E28-541F-418E-9C60-4975ED3E5823}
+	EndGlobalSection
+EndGlobal
