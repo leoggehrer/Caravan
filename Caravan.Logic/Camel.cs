@@ -6,8 +6,9 @@
         /// Kamel mit Maximalgeschwindigkeit 20 erzeugen
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="mp"></param>
-        public Camel(string name, int mp)
+        /// <param name="maxPace"></param>
+        public Camel(string name, int maxPace)
+            : base(name, Math.Min(Math.Max(maxPace, 0), 20))
         {
         }
 
@@ -18,7 +19,7 @@
         {
             get
             {
-                return -1;
+                return Math.Max(MaxPace - (Load * 1), 0);
             }
         }
     }

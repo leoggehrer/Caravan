@@ -2,13 +2,17 @@
 {
     public class Horse : PackAnimal
     {
+        #region fields
+        #endregion fields
         /// <summary>
         /// Pferd mit Maximalgeschwindigkeit 70 erzeugen
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="mp"></param>
-        public Horse(string name, int mp) 
+        /// <param name="maxPace"></param>
+        public Horse(string name, int maxPace)
+            : base(name, Math.Min(Math.Max(maxPace, 0), 70))
         {
+
         }
 
         /// <summary>
@@ -18,7 +22,7 @@
         {
             get
             {
-                return -1;
+                return Math.Max(MaxPace - (Load * 10), 0);
             }
         }
 

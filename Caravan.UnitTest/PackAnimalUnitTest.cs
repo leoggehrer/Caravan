@@ -6,14 +6,47 @@ namespace Caravan.UnitTest
     public class PackAnimalUnitTest
     {
         [TestMethod()]
-        public void T01_CamelConstructorTest()
+        public void ItShouldReturnTheCorrectPaceForHorse_GivenInvalidValue()
         {
-            Camel willi = new Camel("willi", 10);
-            Assert.AreEqual(10, willi.Pace, "Geschw. 10 nicht korrekt");
-            Camel franzi = new Camel("Franzi", -5);
-            Assert.AreEqual(0, franzi.Pace, "Geschw. -5 nicht korrekt");
-            Camel susi = new Camel("Susi", 80);
-            Assert.AreEqual(20, susi.Pace, "Geschw. 80 nicht korrekt");
+            PackAnimal maxPlusOne = new Horse("willi", 71);
+            Assert.AreEqual(70, maxPlusOne.Pace, $"Geschw. {maxPlusOne.Pace} nicht korrekt");
+
+            PackAnimal max = new Horse("willi", 70);
+            Assert.AreEqual(70, maxPlusOne.Pace, $"Geschw. {max.Pace} nicht korrekt");
+
+            PackAnimal maxMinusOne = new Horse("willi", 69);
+            Assert.AreEqual(69, maxMinusOne.Pace, $"Geschw. {maxMinusOne.Pace} nicht korrekt");
+
+            PackAnimal minusOne = new Horse("Franzi", -1);
+            Assert.AreEqual(0, minusOne.Pace, $"Geschw. {minusOne.Pace} nicht korrekt");
+
+            PackAnimal zero = new Horse("Susi", 0);
+            Assert.AreEqual(0, zero.Pace, $"Geschw. {zero.Pace} nicht korrekt");
+
+            PackAnimal plusOne = new Horse("Franzi", 1);
+            Assert.AreEqual(1, plusOne.Pace, $"Geschw. {plusOne.Pace} nicht korrekt");
+        }
+
+        [TestMethod()]
+        public void ItShouldReturnTheCorrectPaceForCamel_GivenInvalidValue()
+        {
+            PackAnimal maxPlusOne = new Camel("willi", 21);
+            Assert.AreEqual(20, maxPlusOne.Pace, $"Geschw. {maxPlusOne.Pace} nicht korrekt");
+
+            PackAnimal max = new Camel("willi", 20);
+            Assert.AreEqual(20, maxPlusOne.Pace, $"Geschw. {max.Pace} nicht korrekt");
+
+            PackAnimal maxMinusOne = new Camel("willi", 19);
+            Assert.AreEqual(19, maxMinusOne.Pace, $"Geschw. {maxMinusOne.Pace} nicht korrekt");
+
+            PackAnimal minusOne = new Camel("Franzi", -1);
+            Assert.AreEqual(0, minusOne.Pace, $"Geschw. {minusOne.Pace} nicht korrekt");
+
+            PackAnimal zero = new Camel("Susi", 0);
+            Assert.AreEqual(0, zero.Pace, $"Geschw. {zero.Pace} nicht korrekt");
+
+            PackAnimal plusOne = new Camel("Franzi", 1);
+            Assert.AreEqual(1, plusOne.Pace, $"Geschw. {plusOne.Pace} nicht korrekt");
         }
     }
 }

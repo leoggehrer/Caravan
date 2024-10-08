@@ -2,6 +2,23 @@
 {
     public class Caravan
     {
+        #region embedded types
+        private class Element
+        {
+            public Element(PackAnimal animal, Element? next)
+            {
+                Animal = animal;
+                Next = next;
+            }
+            public PackAnimal Animal;
+            public Element? Next;
+        }
+        #endregion embedded types
+
+        #region fields
+        private Element? _first = null;    
+        #endregion fields
+
         public Caravan()
         {
         }
@@ -13,7 +30,15 @@
         {
             get
             {
-                return -1;
+                int result = 0;
+                Element? run = _first;
+
+                while (run != null)
+                {
+                    result++;
+                    run = run.Next;
+                }
+                return result;
             }
         }
 
@@ -24,7 +49,15 @@
         {
             get
             {
-                return -1;
+                int result = 0;
+                Element? run = _first;
+
+                while (run != null)
+                {
+                    result += run.Animal.Load;
+                    run = run.Next;
+                }
+                return result;
             }
         }
 
@@ -34,11 +67,17 @@
         /// </summary>
         /// <param name="name">Name des Packtiers</param>
         /// <returns>Packtier</returns>
-        public PackAnimal this[string name]
+        public PackAnimal? this[string name]
         {
             get
             {
-                return null;
+                Element? run = _first;
+
+                while (run != null && run.Animal.Name.Equals(name) == false)
+                {
+                    run = run.Next;
+                }
+                return run?.Animal;
             }
         }
 
@@ -49,11 +88,19 @@
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public PackAnimal this[int index]
+        public PackAnimal? this[int index]
         {
             get
             {
-                return null;
+                int count = 0;
+                Element? run = _first;
+
+                while (run != null && count != index)
+                {
+                    count++;
+                    run = run.Next;
+                }
+                return run?.Animal;
             }
         }
 
@@ -66,7 +113,16 @@
         {
             get
             {
-                return -1;
+                int result = _first == null ? 0 : int.MaxValue;
+                Element? run = _first;
+
+                while (run != null)
+                {
+                    result = Math.Min(result, run.Animal.Pace);
+                    run = run.Next;
+                }
+
+                return result;
             }
         }
 
@@ -74,17 +130,55 @@
         /// Fügt ein Tragtier in die Karawane ein.
         /// Dem Tragtier wird mitgeteilt, in welcher Karawane es sich nun befindet.
         /// </summary>
-        /// <param name="p">einzufügendes Tragtier</param>
-        public void AddPackAnimal(PackAnimal p)
+        /// <param name="packAnimal">einzufügendes Tragtier</param>
+        public void AddPackAnimal(PackAnimal? packAnimal)
         {
+            if (packAnimal != null && IsInCaravan(packAnimal) == false)
+            {
+                if (_first == null)
+                {
+                    _first = new Element(packAnimal, null);
+                    packAnimal.MyCaravan = this;
+                }
+                else
+                {
+                    Element? run = _first;
+
+                    while (run.Next != null)
+                    {
+                        run = run.Next;
+                    }
+                    run.Next = new Element(packAnimal, null);
+                    packAnimal.MyCaravan = this;
+                }
+            }
         }
 
         /// <summary>
         /// Nimmt das Tragtier o aus dieser Karawane heraus
         /// </summary>
-        /// <param name="p">Tragtier, das die Karawane verläßt</param>
-        public void RemovePackAnimal(PackAnimal p)
+        /// <param name="packAnimal">Tragtier, das die Karawane verläßt</param>
+        public void RemovePackAnimal(PackAnimal packAnimal)
         {
+            if (_first != null && _first.Animal == packAnimal)
+            {
+                _first = _first.Next;
+                packAnimal.MyCaravan = null;
+            }
+            else
+            {
+                Element? run = _first;
+
+                while (run != null && run.Next != null && run.Next.Animal != packAnimal)
+                {
+                    run = run.Next;
+                }
+                if (run != null && run.Next != null)
+                {
+                    run.Next = run.Next.Next;
+                    packAnimal.MyCaravan = null;
+                }
+            }
         }
 
         /// <summary>
@@ -92,6 +186,13 @@
         /// </summary>
         public void Unload()
         {
+            Element? run = _first;
+
+            while (run != null)
+            {
+                run.Animal.Load = 0;
+                run = run.Next;
+            }
         }
 
         /// <summary>
@@ -102,7 +203,37 @@
         /// <param name="load">Anzahl der Ballen Ladung</param>
         public void AddLoad(int load)
         {
+            while (_first != null && load > 0)
+            {
+                Element? run = _first;
+                Element? max = _first;
+                int savePace = Int32.MinValue;
+
+                while (run != null)
+                {
+                    run.Animal.Load++;
+                    if (Pace > savePace)
+                    {
+                        savePace = Pace;
+                        max = run;
+                    }
+                    run.Animal.Load--;
+                    run = run.Next;
+                }
+                max.Animal.Load++;
+                load--;
+            }
         }
 
+        private bool IsInCaravan(PackAnimal packAnimal)
+        {
+            Element? run = _first;
+
+            while (run != null && run.Animal != packAnimal)
+            {
+                run = run.Next;
+            }
+            return run != null;
+        }
     }
 }

@@ -52,9 +52,9 @@ namespace Caravan.UnitTest
             saharaExpress.AddPackAnimal(new Logic.Camel("Willi", 15));
             saharaExpress.AddPackAnimal(new Logic.Camel("Susi", 16));
             saharaExpress.AddPackAnimal(new Logic.Camel("Mitzi", 14));
-            Assert.AreEqual("Mitzi", saharaExpress["Mitzi"].Name, "Indexer am ANFANG nicht korrekt");
-            Assert.AreEqual("Susi", saharaExpress["Susi"].Name, "Indexer in der MITTE nicht korrekt");
-            Assert.AreEqual("Willi", saharaExpress["Willi"].Name, "Indexer am ENDE nicht korrekt");
+            Assert.AreEqual("Mitzi", saharaExpress["Mitzi"]!.Name, "Indexer am ANFANG nicht korrekt");
+            Assert.AreEqual("Susi", saharaExpress["Susi"]!.Name, "Indexer in der MITTE nicht korrekt");
+            Assert.AreEqual("Willi", saharaExpress["Willi"]!.Name, "Indexer am ENDE nicht korrekt");
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace Caravan.UnitTest
             saharaExpress.AddPackAnimal(new Logic.Camel("Susi", 16));
             saharaExpress.AddPackAnimal(new Logic.Camel("Mitzi", 14));
 
-            Assert.AreEqual("Willi", saharaExpress[0].Name, "Indexer am ANFANG nicht korrekt");
-            Assert.AreEqual("Susi", saharaExpress[1].Name, "Indexer in der MITTE nicht korrekt");
-            Assert.AreEqual("Mitzi", saharaExpress[2].Name, "Indexer am ENDE nicht korrekt");
+            Assert.AreEqual("Willi", saharaExpress[0]!.Name, "Indexer am ANFANG nicht korrekt");
+            Assert.AreEqual("Susi", saharaExpress[1]!.Name, "Indexer in der MITTE nicht korrekt");
+            Assert.AreEqual("Mitzi", saharaExpress[2]!.Name, "Indexer am ENDE nicht korrekt");
         }
 
         /// <summary>
@@ -83,12 +83,12 @@ namespace Caravan.UnitTest
             saharaExpress.AddPackAnimal(new Logic.Camel("Willi", 15));
             saharaExpress.AddPackAnimal(new Logic.Camel("Susi", 16));
             saharaExpress.AddPackAnimal(new Logic.Camel("Mitzi", 14));
-            saharaExpress["Willi"].Load = 10;
-            saharaExpress["Susi"].Load = 8;
-            saharaExpress["Mitzi"].Load = 5;
+            saharaExpress["Willi"]!.Load = 10;
+            saharaExpress["Susi"]!.Load = 8;
+            saharaExpress["Mitzi"]!.Load = 5;
             Assert.AreEqual(5, saharaExpress.Pace, "Karawane bewegt sich --> nicht korrekt");
             Assert.AreEqual(23, saharaExpress.Load, "Gesamtbeladung der Karawane stimmt nicht");
-            saharaExpress["Willi"].Load = 25;
+            saharaExpress["Willi"]!.Load = 25;
             Assert.AreEqual(0, saharaExpress.Pace, "Karawane steht, weil Last zu hoch --> nicht korrekt");
             Assert.AreEqual(38, saharaExpress.Load, "Gesamtbeladung der Karawane stimmt nicht");
         }
@@ -129,17 +129,17 @@ namespace Caravan.UnitTest
             saharaExpress.AddPackAnimal(new Logic.Camel("Susi", 16));
             saharaExpress.AddPackAnimal(new Logic.Camel("Mitzi", 14));
             saharaExpress.AddPackAnimal(new Logic.Horse("Moritz", 45));
-            saharaExpress["Willi"].Load = 10;  // --> Geschw. 15- 10 = 5
-            saharaExpress["Susi"].Load = 9;    // --> Geschw. 16 - 9 = 7
-            saharaExpress["Mitzi"].Load = 5;   // --> Geschw. 14 - 5 = 9
-            saharaExpress["Moritz"].Load = 3;  // --> Geschw. 45 - 10*3 = 15
+            saharaExpress["Willi"]!.Load = 10;  // --> Geschw. 15- 10    = 5
+            saharaExpress["Susi"]!.Load = 9;    // --> Geschw. 16 - 9    = 7
+            saharaExpress["Mitzi"]!.Load = 5;   // --> Geschw. 14 - 5    = 9
+            saharaExpress["Moritz"]!.Load = 3;  // --> Geschw. 45 - 10*3 = 15
             saharaExpress.AddLoad(3);
             Assert.AreEqual(5, saharaExpress.Pace, "Karawanengeschwindigkeit gesamt nicht korrekt");
-            Assert.AreEqual(5, saharaExpress["Willi"].Pace, "Geschwindigkeit von Willi nicht korrekt");
+            Assert.AreEqual(5, saharaExpress["Willi"]!.Pace, "Geschwindigkeit von Willi nicht korrekt");
             //! Mitzi oder Susi sind auf 6/7 oder 7/6
             // Assert.AreEqual(7, saharaExpress["Susi"].Pace, "Geschwindigkeit von Susi nicht korrekt");
             // Assert.AreEqual(7, saharaExpress["Mitzi"].Pace, "Geschwindigkeit von Mitzi nicht korrekt");
-            Assert.AreEqual(15, saharaExpress["Moritz"].Pace, "Geschwindigkeit von Moritz nicht korrekt");
+            Assert.AreEqual(15, saharaExpress["Moritz"]!.Pace, "Geschwindigkeit von Moritz nicht korrekt");
         }
 
         /// <summary>
@@ -153,16 +153,16 @@ namespace Caravan.UnitTest
             saharaExpress.AddPackAnimal(new Logic.Camel("Susi", 16));
             saharaExpress.AddPackAnimal(new Logic.Camel("Mitzi", 13));
             saharaExpress.AddPackAnimal(new Logic.Horse("Moritz", 45));
-            saharaExpress["Willi"].Load = 10;  // --> Geschw. 17 - 10 = 7
-            saharaExpress["Susi"].Load = 9;    // --> Geschw. 16 - 9 = 7
-            saharaExpress["Mitzi"].Load = 5;   // --> Geschw. 13 - 5 = 8
-            saharaExpress["Moritz"].Load = 3;  // --> Geschw. 45 - 10*3 = 15
+            saharaExpress["Willi"]!.Load = 10;  // --> Geschw. 17 - 10      = 7
+            saharaExpress["Susi"]!.Load = 9;    // --> Geschw. 16 - 9       = 7
+            saharaExpress["Mitzi"]!.Load = 5;   // --> Geschw. 13 - 5       = 8
+            saharaExpress["Moritz"]!.Load = 3;  // --> Geschw. 45 - 10*3    = 15
             saharaExpress.AddLoad(4);
             Assert.AreEqual(6, saharaExpress.Pace, "Karawanengeschwindigkeit gesamt nicht korrekt");
-            Assert.AreEqual(6, saharaExpress["Willi"].Pace, "Geschwindigkeit von Willi nicht korrekt");
-            Assert.AreEqual(6, saharaExpress["Susi"].Pace, "Geschwindigkeit von Susi nicht korrekt");
-            Assert.AreEqual(6, saharaExpress["Mitzi"].Pace, "Geschwindigkeit von Mitzi nicht korrekt");
-            Assert.AreEqual(15, saharaExpress["Moritz"].Pace, "Geschwindigkeit von Moritz nicht korrekt");
+            Assert.AreEqual(6, saharaExpress["Willi"]!.Pace, "Geschwindigkeit von Willi nicht korrekt");
+            Assert.AreEqual(6, saharaExpress["Susi"]!.Pace, "Geschwindigkeit von Susi nicht korrekt");
+            Assert.AreEqual(6, saharaExpress["Mitzi"]!.Pace, "Geschwindigkeit von Mitzi nicht korrekt");
+            Assert.AreEqual(15, saharaExpress["Moritz"]!.Pace, "Geschwindigkeit von Moritz nicht korrekt");
         }
 
 
@@ -190,11 +190,11 @@ namespace Caravan.UnitTest
             Assert.AreEqual(secondExpress, moritz.MyCaravan, "Moritz gehört jetzt zu secondExpress");
             Assert.AreEqual(3, secondExpress.Count, " Sollten 3 Tiere sein");
             Assert.AreEqual(2, saharaExpress.Count, " Sollten nur mehr 2 Tiere sein");
-            Assert.AreEqual(3, secondExpress["Moritz"].Load, "Moritz Ladung gehört jetzt zu SecondExpress");
+            Assert.AreEqual(3, secondExpress["Moritz"]!.Load, "Moritz Ladung gehört jetzt zu SecondExpress");
             // weiterer Brutalumstieg eines Tiers
             moritz.MyCaravan = saharaExpress;
             Assert.AreEqual(saharaExpress, moritz.MyCaravan, "Moritz gehört jetzt wieder zu Saharaexpress");
-            Assert.AreEqual(3, saharaExpress["Moritz"].Load, "Moritz Ladung gehört jetzt auch wieder zu Saharaexpress");
+            Assert.AreEqual(3, saharaExpress["Moritz"]!.Load, "Moritz Ladung gehört jetzt auch wieder zu Saharaexpress");
             Assert.AreEqual(2, secondExpress.Count, " Sollten 2 Tiere sein");
             Assert.AreEqual(3, saharaExpress.Count, " Sollten 3 Tiere sein");
         }
