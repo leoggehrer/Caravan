@@ -3,7 +3,7 @@
 namespace Caravan.UnitTest
 {
     [TestClass]
-    public class PackAnimalUnitTest
+    public class PackAnimalUnitTests
     {
         [TestMethod()]
         public void ItShouldReturnTheCorrectPaceForHorse_GivenInvalidOrValidValue()
